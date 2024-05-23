@@ -8,10 +8,14 @@ require_once (__DIR__."/../../../vendor/autoload.php");
 // require_once (__DIR__."/../../../sola88/addonmodules.php");
 use WHMCS\Module\Addon\AddonModule\Forecast;
 echo "start\n";
+use WHMCS\Database\Capsule;
 try {
     $forecast = new Forecast();
-    $forecast->saveHistory("daily");
-    echo "done";
+    $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('domainstatus', '=', $status)->get();
+    // $forecast->saveHistory("daily");
+    // $forcast->getHostedServices('Monthly', "Active");
+    var_dump($do);
+    echo "done\n";
     //$forecast->saveHistory("monthly");
 } catch(Exception $e) {
     logActivity("CRON ERROR: Income Forest -> {$e->getMessage()}", 1);
