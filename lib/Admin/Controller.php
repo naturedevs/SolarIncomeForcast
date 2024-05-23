@@ -485,6 +485,10 @@ class Controller
                     case '1095':
                         today.setFullYear(today.getFullYear() - 3);
                         break;
+
+                    case '0':
+                        today.setFullYear(today.getFullYear() - 100);
+                        break;
                 }
                 return today.toISOString().split('T')[0];
             }
@@ -524,6 +528,7 @@ class Controller
                     <option value="180">Last 6 Months</option>
                     <option value="365">Last Year</option>
                     <option value="1095">Last 3 Years</option>
+                    <option value="0">All Years</option>
                 </select>
             </div>
       		<canvas id="chart-01" height="500"  style="background-color:rgba(255,255,255,1.00);border-radius:0px;width:100%;height:500px;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px"></canvas>
