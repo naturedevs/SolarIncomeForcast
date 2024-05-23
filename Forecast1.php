@@ -6,7 +6,7 @@ class Forecast1
     function __construct()
     {
         // $start = new date('2012-03-01');
-        $start_date = '2024-03-01'; // Start date
+        $start_date = '2012-03-01'; // Start date
         $current_date = date('Y-m-d'); // Current date
         for ($date = strtotime($start_date); $date <= strtotime($current_date); $date += 86400) {
             echo date('Y-m-d', $date). "\n"; // Print the date in YYYY-MM-DD format
@@ -18,24 +18,24 @@ class Forecast1
             //     echo $start->format('Y-m-d'). "\n"; // Print the date in YYYY-MM-DD format
             //     $start->modify('+1 day'); // Increment the start date by one day
             // }
-
+            $date1 = date('Y-m-d', $date);
             $this->dayNumber = date("d", $date);
             $this->dayOfWeek = date("l", $date);
             $this->dayPosition = (floor(($dayNumber - 1) / 7) + 1);
 
-            $this->monthlyServices = $this->getHostedServices1('Monthly', $date);
-            $this->anualServices = $this->getHostedServices1('Annually', $date);
-            $this->triServices = $this->getHostedServices1('Triennially', $date);
-            $this->semiServices = $this->getHostedServices1('Semi-Annually', $date);
-            $this->quarterServices = $this->getHostedServices1('Quarterly', $date);
-            $this->biServices = $this->getHostedServices1('Biennially', $date);
+            $this->monthlyServices = $this->getHostedServices1('Monthly', $date1);
+            $this->anualServices = $this->getHostedServices1('Annually', $date1);
+            $this->triServices = $this->getHostedServices1('Triennially', $date1);
+            $this->semiServices = $this->getHostedServices1('Semi-Annually', $date1);
+            $this->quarterServices = $this->getHostedServices1('Quarterly', $date1);
+            $this->biServices = $this->getHostedServices1('Biennially', $date1);
 
-            $this->monthlyAddons = $this->getHostedAddons1('Monthly', $date);
-            $this->anualAddons = $this->getHostedAddons1('Annually', $date);
-            $this->triAddons = $this->getHostedAddons1('Triennially', $date);
-            $this->semiAddons = $this->getHostedAddons1('Semi-Annually', $date);
-            $this->quarterAddons = $this->getHostedAddons1('Quarterly', $date);
-            $this->biAddons = $this->getHostedAddons1('Biennially', $date);
+            $this->monthlyAddons = $this->getHostedAddons1('Monthly', $date1);
+            $this->anualAddons = $this->getHostedAddons1('Annually', $date1);
+            $this->triAddons = $this->getHostedAddons1('Triennially', $date1);
+            $this->semiAddons = $this->getHostedAddons1('Semi-Annually', $date1);
+            $this->quarterAddons = $this->getHostedAddons1('Quarterly', $date1);
+            $this->biAddons = $this->getHostedAddons1('Biennially', $date1);
 
             $this->suspendedMonthlyServices = [];
             $this->suspendedAnualServices = [];
@@ -234,7 +234,7 @@ class Forecast1
             $this->totalSuspendedCount = $this->suspendCount + $this->suspendedAddonCount;
             $this->totalActiveCount = $this->activeCount + $this->activeAddonCount;
             $this->totalCount = $this->activeCount + $this->suspendCount + $this->activeAddonCount + $this->suspendedAddonCount;
-            $this->saveHistory("daily", $date);
+            $this->saveHistory("daily", $date1);
         }
 
     }
