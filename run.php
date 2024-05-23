@@ -16,7 +16,7 @@ try {
     $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('domainstatus', '=', $status)->get();
     // $forecast->saveHistory("daily");
     // $forcast->getHostedServices('Monthly', "Active");
-    var_dump($do);
+    var_dump(count($do));
     echo "done\n";
     //$forecast->saveHistory("monthly");
 } catch(Exception $e) {
