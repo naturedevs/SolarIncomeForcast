@@ -5,6 +5,17 @@ class Forecast
 {
     function __construct()
     {
+        $start = new DateTime('2012-03-01');
+
+        // Get today's date
+        $now = new DateTime();
+
+        // Iterate over dates from the start date to today
+        while ($start <= $now) {
+            echo $start->format('Y-m-d'). "\n"; // Print the date in YYYY-MM-DD format
+            $start->modify('+1 day'); // Increment the start date by one day
+        }
+        
         $this->date = mktime(0, 0, 0, 1, 27, 2014);
         $this->dayNumber = date("d", $date);
         $this->dayOfWeek = date("l", $date);

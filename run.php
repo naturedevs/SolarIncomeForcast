@@ -13,7 +13,7 @@ try {
     $forecast = new Forecast();
     $period = "Monthly";
     $status = "Active";
-    $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('domainstatus', '=', $status)->get();
+    $do = Capsule::table('tblhosting')->where('nextduedate', '<' , "2015-04-01")->get();
     // $forecast->saveHistory("daily");
     // $forcast->getHostedServices('Monthly', "Active");
     var_dump(count($do));
