@@ -332,12 +332,12 @@ class Forecast1
     }
     public function getHostedServices1($period, $date)
     {
-        $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('nextduedate', '<' , $date)->get();
+        $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('nextduedate', '>' , $date)->where('regdate', '<' , $date)->get();
         return $do;
     }
     public function getHostedAddons1($period, $date)
     {
-        $do = Capsule::table('tblhostingaddons')->where('billingcycle', $period)->where('nextduedate', '<' , $date)->get();
+        $do = Capsule::table('tblhostingaddons')->where('billingcycle', $period)->where('nextduedate', '>' , $date)->where('regdate', '<' , $date)->get();
         return $do;
     }
 }
