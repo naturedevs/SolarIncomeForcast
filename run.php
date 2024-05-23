@@ -11,6 +11,8 @@ echo "start\n";
 // use WHMCS\Database\Capsule;
 try {
     $forecast = new Forecast();
+    $period = "Monthly";
+    $status = "Active";
     $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('domainstatus', '=', $status)->get();
     // $forecast->saveHistory("daily");
     // $forcast->getHostedServices('Monthly', "Active");
