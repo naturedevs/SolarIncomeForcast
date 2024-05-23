@@ -1,7 +1,7 @@
 <?php
 use WHMCS\Database\Capsule;
 require_once ("Forecast.php");
-// require_once (__DIR__."/../../../index.php");
+require_once (__DIR__."/../../../configuration.php");
 require_once (__DIR__."/../../../vendor/autoload.php");
 // require_once (__DIR__."/../../../includes/index.php");
 // require_once (__DIR__."/../../../sola88/addonmodules.php");
