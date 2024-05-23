@@ -234,7 +234,7 @@ class Forecast1
             $this->totalSuspendedCount = $this->suspendCount + $this->suspendedAddonCount;
             $this->totalActiveCount = $this->activeCount + $this->activeAddonCount;
             $this->totalCount = $this->activeCount + $this->suspendCount + $this->activeAddonCount + $this->suspendedAddonCount;
-            $this->saveHistory("daily", $date)
+            $this->saveHistory("daily", $date);
         }
 
     }
