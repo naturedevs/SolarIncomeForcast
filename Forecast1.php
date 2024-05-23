@@ -6,7 +6,7 @@ class Forecast1
     function __construct()
     {
         // $start = new date('2012-03-01');
-        $start_date = '2021-03-01'; // Start date
+        $start_date = '2012-03-01'; // Start date
         $current_date = date('Y-m-d'); // Current date
         for ($date = strtotime($start_date); $date <= strtotime($current_date); $date += 86400) {
             echo date('Y-m-d', $date). "\n"; // Print the date in YYYY-MM-DD format
