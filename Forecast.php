@@ -5,17 +5,21 @@ class Forecast
 {
     function __construct()
     {
-        $start = new DateTime('2012-03-01');
-
+        // $start = new date('2012-03-01');
+        $start_date = '2024-03-01'; // Start date
+        $current_date = date('Y-m-d'); // Current date
+        for ($date = strtotime($start_date); $date <= strtotime($current_date); $date += 86400) {
+            echo date('Y-m-d', $date). "\n"; // Print the date in YYYY-MM-DD format
+        }
         // Get today's date
-        $now = new DateTime();
+        // $now = new date();
 
         // Iterate over dates from the start date to today
-        while ($start <= $now) {
-            echo $start->format('Y-m-d'). "\n"; // Print the date in YYYY-MM-DD format
-            $start->modify('+1 day'); // Increment the start date by one day
-        }
-        
+        // while ($start <= $now) {
+        //     echo $start->format('Y-m-d'). "\n"; // Print the date in YYYY-MM-DD format
+        //     $start->modify('+1 day'); // Increment the start date by one day
+        // }
+
         $this->date = mktime(0, 0, 0, 1, 27, 2014);
         $this->dayNumber = date("d", $date);
         $this->dayOfWeek = date("l", $date);
