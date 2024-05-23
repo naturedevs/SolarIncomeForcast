@@ -65,19 +65,19 @@ class Forecast1
             $this->quarterAddonsCount = count($this->quarterAddons);
             $this->biAddonsCount = count($this->biAddons);
 
-            // $this->suspendedMonthlyAddonsCount = count($this->suspendedMonthlyAddons);
-            // $this->suspendedAnnualAddonsCount = count($this->suspendedAnualAddons);
-            // $this->suspendedTriAddonsCount = count($this->suspendedTriAddons);
-            // $this->suspendedSemiAddonsCount = count($this->suspendedSemiServices);
-            // $this->suspendedQuarterAddonsCount = count($this->suspendedQuarterAddons);
-            // $this->suspendedBiAddonsCount = count($this->suspendedBiAddons);
+            $this->suspendedMonthlyAddonsCount = 0;
+            $this->suspendedAnnualAddonsCount = 0;
+            $this->suspendedTriAddonsCount = 0;
+            $this->suspendedSemiAddonsCount = 0;
+            $this->suspendedQuarterAddonsCount = 0;
+            $this->suspendedBiAddonsCount = 0;
 
-            // $this->suspendedMonthlyServicesCount = count($this->suspendedMonthlyServices);
-            // $this->suspendedAnnualServicesCount = count($this->suspendedAnualServices);
-            // $this->suspendedTriServicesCount = count($this->suspendedTriServices);
-            // $this->suspendedSemiServicesCount = count($this->suspendedSemiServices);
-            // $this->suspendedQuarterServicesCount = count($this->suspendedQuarterServices);
-            // $this->suspendedBiServicesCount = count($this->suspendedBiServices);
+            $this->suspendedMonthlyServicesCount = 0;
+            $this->suspendedAnnualServicesCount = 0;
+            $this->suspendedTriServicesCount = 0;
+            $this->suspendedSemiServicesCount = 0;
+            $this->suspendedQuarterServicesCount = 0;
+            $this->suspendedBiServicesCount = 0;
 
             $this->totalActiveServices = $this->monthlyServicesCount + $this->biServicesCount + $this->annualServicesCount + $this->triServicesCount + $this->semiServicesCount + $this->quarterServicesCount;
             $this->totalSuspendedServices = $this->suspendedMonthlyServicesCount + $this->suspendedBiServicesCount + $this->suspendedAnnualServicesCount + $this->suspendedTriServicesCount + $this->suspendedSemiServicesCount + $this->suspendedQuarterServicesCount;
