@@ -1,6 +1,7 @@
 <?php
 use WHMCS\Database\Capsule;
 require_once ("Forecast.php");
+require_once ("Forecast1.php");
 require_once (__DIR__."/../../../configuration.php");
 require_once (__DIR__."/../../../init.php");
 require_once (__DIR__."/../../../vendor/autoload.php");
