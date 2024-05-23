@@ -37,19 +37,19 @@ class Forecast1
             $this->quarterAddons = $this->getHostedAddons1('Quarterly', $date);
             $this->biAddons = $this->getHostedAddons1('Biennially', $date);
 
-            // $this->suspendedMonthlyServices = $this->getHostedServices1('Monthly', "Suspended");
-            // $this->suspendedAnualServices = $this->getHostedServices1('Annually', "Suspended");
-            // $this->suspendedTriServices = $this->getHostedServices1('Triennially', "Suspended");
-            // $this->suspendedSemiServices = $this->getHostedServices1('Semi-Annually', "Suspended");
-            // $this->suspendedQuarterServices = $this->getHostedServices1('Quarterly', "Suspended");
-            // $this->suspendedBiServices = $this->getHostedServices1('Quarterly', "Suspended");
+            $this->suspendedMonthlyServices = [];
+            $this->suspendedAnualServices = [];
+            $this->suspendedTriServices = [];
+            $this->suspendedSemiServices = [];
+            $this->suspendedQuarterServices = [];
+            $this->suspendedBiServices = [];
 
-            // $this->suspendedMonthlyAddons = $this->getHostedAddons1('Monthly', "Suspended");
-            // $this->suspendedAnualAddons = $this->getHostedAddons1('Annually', "Suspended");
-            // $this->suspendedTriAddons = $this->getHostedAddons1('Triennially', "Suspended");
-            // $this->suspendedSemiAddons = $this->getHostedAddons1('Semi-Annually', "Suspended");
-            // $this->suspendedQuarterAddons = $this->getHostedAddons1('Quarterly', "Suspended");
-            // $this->suspendedBiAddons = $this->getHostedAddons1('Quarterly', "Suspended");
+            $this->suspendedMonthlyAddons = [];
+            $this->suspendedAnualAddons = [];
+            $this->suspendedTriAddons = [];
+            $this->suspendedSemiAddons = [];
+            $this->suspendedQuarterAddons = [];
+            $this->suspendedBiAddons = [];
 
             $this->monthlyServicesCount = count($this->monthlyServices);
             $this->annualServicesCount = count($this->anualServices);
