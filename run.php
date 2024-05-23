@@ -2,11 +2,12 @@
 use WHMCS\Database\Capsule;
 require_once ("Forecast.php");
 require_once (__DIR__."/../../../configuration.php");
+require_once (__DIR__."/../../../init.php");
 require_once (__DIR__."/../../../vendor/autoload.php");
 // require_once (__DIR__."/../../../includes/index.php");
 // require_once (__DIR__."/../../../sola88/addonmodules.php");
 use WHMCS\Module\Addon\AddonModule\Forecast;
-echo "start";
+echo "start\n";
 try {
     $forecast = new Forecast();
     $forecast->saveHistory("daily");
