@@ -3,6 +3,7 @@ use WHMCS\Database\Capsule;
 require_once ("Forecast.php");
 require_once (__DIR__."/../../../sola88/addonmodules.php");
 use WHMCS\Module\Addon\AddonModule\Forecast;
+echo "start";
 try {
     $forecast = new Forecast();
     $forecast->saveHistory("daily");
