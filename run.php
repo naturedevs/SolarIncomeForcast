@@ -16,5 +16,6 @@ try {
     //$forecast->saveHistory("monthly");
 } catch(Exception $e) {
     logActivity("CRON ERROR: Income Forest -> {$e->getMessage()}", 1);
-    echo "error";
+    echo "error\n";
+    echo "{$e->getMessage()}\n";
 }
