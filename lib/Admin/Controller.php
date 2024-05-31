@@ -455,216 +455,216 @@ class Controller
         // $date = $year . '-01-01';
         $date = date('Y-m-d', strtotime('last month'));
         $content = print_r($this->history, 1);
-        return <<<EOF
+return <<<EOF
 
-        <script>
-            function updateChart(timeUnit, startDate) {
-                myLine.scales['x-axis-0'].options.time.min = startDate;
-                myLine.scales['x-axis-0'].options.time.unit = timeUnit;
-                myLine.update();
-            }
-        
-            function calculateStartDate(range) {
-                var today = new Date();
-                switch(range) {
-                    case '7':
-                        today.setDate(today.getDate() - 7);
-                        break;
+<script>
+    function updateChart(timeUnit, startDate) {
+        myLine.scales['x-axis-0'].options.time.min = startDate;
+        myLine.scales['x-axis-0'].options.time.unit = timeUnit;
+        myLine.update();
+    }
 
-                    case '30':
-                        today.setMonth(today.getMonth() - 1);
-                        break;
-                    
-                    case '180':
-                        today.setMonth(today.getMonth() - 6);
-                        break;
-                    
-                    case '365':
-                        today.setFullYear(today.getFullYear() - 1);
-                        break;
+    function calculateStartDate(range) {
+        var today = new Date();
+        switch(range) {
+            case '7':
+                today.setDate(today.getDate() - 7);
+                break;
 
-                    case '1095':
-                        today.setFullYear(today.getFullYear() - 3);
-                        break;
-
-                    case '0':
-                        today.setFullYear(today.getFullYear() - 100);
-                        break;
-                }
-                return today.toISOString().split('T')[0];
-            }
-
-            $(document).ready(function() {
-                document.getElementById('interval-select').addEventListener('change', function() {
-                    var timeUnit = this.value;
-                    var range = document.getElementById('period-select').value;
-                    var startDate = calculateStartDate(range);
+            case '30':
+                today.setMonth(today.getMonth() - 1);
+                break;
             
-                    updateChart(timeUnit, startDate);
-                });
+            case '180':
+                today.setMonth(today.getMonth() - 6);
+                break;
             
-                document.getElementById('period-select').addEventListener('change', function() {
-                    var range = this.value;
-                    var timeUnit = document.getElementById('interval-select').value;
-                    var startDate = calculateStartDate(range);
-            
-                    updateChart(timeUnit, startDate);
-                });
-            });
-        </script>
-      	</head>
-      	<body>
-            <div class="controls">
-                <label for="interval-select">Select Interval:</label>
-                <select id="interval-select">
-                    <option value="day">Daily</option>
-                    <option value="week" selected>Weekly</option>
-                    <option value="month">Monthly</option>
-                </select>
-        
-                <label for="period-select">Select Period:</label>
-                <select id="period-select">
-                    <option value="7">Last 7 Days</option>
-                    <option value="30" selected>Last 30 Days</option>
-                    <option value="180">Last 6 Months</option>
-                    <option value="365">Last Year</option>
-                    <option value="1095">Last 3 Years</option>
-                    <option value="0">All Years</option>
-                </select>
-            </div>
-      		<canvas id="chart-01" height="500"  style="background-color:rgba(255,255,255,1.00);border-radius:0px;width:100%;height:500px;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px"></canvas>
-      		<script>
-                function MoreChartOptions(){}
-                    var ChartData = {
-                        datasets: [{
-                            data: [{$activeServices}],
-                            backgroundColor :'rgba(45,227,76,0)',
-                            borderColor : 'rgba(0,162,255,0.5)',
-                            pointBackgroundColor:'#3498db',
-                            pointBorderColor : '#fff',
-                            label:"Active Services"
-                        }, {
-                            data: [{$allmonthlyServices}],
-                            backgroundColor :'rgba(237,71,71,0)',
-                            borderColor : '#f26464',
-                            pointBackgroundColor:'#f26464',
-                            pointBorderColor : '#fff',
-                            label:"Monthly Services"
-                        }, {
-                            data: [{$allServices}],
-                            backgroundColor :'rgba(92,184,92,0)',
-                            borderColor : '#5cb85c',
-                            pointBackgroundColor:'#5cb85c',
-                            pointBorderColor : '#fff',
-                            label:"All Services"
-                        }]
-      	            };
+            case '365':
+                today.setFullYear(today.getFullYear() - 1);
+                break;
 
-                    ChartOptions = {
-                        responsive:true,
-                        scales: {
-                            xAxes: [{
-                                type: 'time',
-                                display: true,
-                                time: {
-                                    parser: "YYYY-MM-DD",
-                                    min: "$date",
-                                    unit: 'week'
-                                }
-                            }],
+            case '1095':
+                today.setFullYear(today.getFullYear() - 3);
+                break;
 
-                            yAxes:[{
-                                gridLines:{borderDash:[],},
-                                ticks: {
-                                    stepSize: 50000
-                                }
-                            }],
-                        },
-                        plugins: {
-                            datalabels:{
-                                display:true,
-                                font: {
-                                    style:' bold'
-                                }
-                            }
-                        },
-                        legend: {
-                            labels: {
-                                generateLabels: function(chart){
-                                    return chart.data.datasets.map(function(dataset, i) {
-                                        return {
-                                            text:dataset.label,
-                                            lineCap:dataset.borderCapStyle,
-                                            lineDash:[],
-                                            lineDashOffset: 0,
-                                            lineJoin:dataset.borderJoinStyle,
-                                            fillStyle:dataset.backgroundColor,
-                                            strokeStyle:dataset.borderColor,
-                                            lineWidth:dataset.pointBorderWidth,
-                                            lineDash:dataset.borderDash,
-                                        }
-                                    })
-                                },
-                            },
-                        },
-                        title: {
-                            display:true,
-                            text:'Income Forecast',
-                            fontColor:'#3498db',
-                            fontSize:32,
-                            fontStyle:' bold',
-                        },
-                        elements: {
-                            arc: {},
-                            point: {},
-                            line: {
-                                tension:0.4
-                            },
-                            rectangle: {},
-                        },
-                        tooltips: {},
-                        hover: {
-                            mode:'nearest',
-                            animationDuration:400,
-                        },
-                    };
-                    var ChartId = "chart-01";
-                    var ChartType = "line";
-                    var myLine = new Chart(document.getElementById(ChartId).getContext("2d"),{type:ChartType,data:ChartData,options:ChartOptions});
-                    document.getElementById(ChartId).getContext("2d").stroke();
-            </script>
-        <p><br>
-        <!--h2>As of now:</h2>
-        If all {$this->totalServices} services and their {$this->totalAddons} addons are renewed for the year you will generate <b>{$this->annualtotal}</b><br>
-        If only the {$this->totalActiveServices} active services and their {$this->totalActiveAddons} addons are renewed for the year  you will generate <b>{$this->activeTotalTotal}</b><br>
-        If only the {$this->totalSuspendedServices} suspended services and their {$this->totalSuspendedAddons} addons are renewed for the year  you will generate <b>{$this->suspendedTotalTotal}</b><br>
-        If only the {$this->totalActiveServices} active services are renewed for the year  you will generate <b>{$this->activeTotal}</b><br>
-        If only the {$this->totalActiveAddons} active addons are renewed for the year  you will generate <b>{$this->activeAddonTotal}</b><br>
-        If only the {$this->totalSuspendedAddons} suspended addons are renewed for the year  you will generate <b>{$this->suspendedAddonTotal}</b>
-        </p--></b>
-        <p><br></br></p><p>
-        <h2>Services:</h2>
-        Monthly: {$this->monthlyServicesCount} (+{$this->suspendedMonthlyServicesCount} suspended) = {$this->monthlyAmount}<br>
-        Annually: {$this->annualServicesCount} (+{$this->suspendedAnnualServicesCount} suspended) = {$this->annualAmount} <br>
-        Semi-Annual: {$this->semiServicesCount} (+{$this->suspendedSemiServicesCount} suspended) = {$this->biannualAmount}<br>
-        Quarterly Services: {$this->quarterServicesCount} (+{$this->suspendedQuarterServicesCount} suspended) = {$this->quarterlyAmount} <br>
-        Triennially: {$this->triServicesCount} (+{$this->suspendedTriServicesCount} suspended) = {$this->triennialAmount}<br>
-        Biennially Services: {$this->biServicesCount} (+{$this->suspendedBiServicesCount} suspended) = {$this->biannualAmount}<br>
-        <br><b>Service Total: {$this->serviceTotal}</b>
-        <br>________________________</br>
-        <br></br><p></p>
-        <h2>Addons:</h2>
-        Monthly: {$this->monthlyAddonsCount} (+{$this->suspendedMonthlyAddonsCount} suspended) = {$this->addonmonthlyAmount}<br>
-        Annually: {$this->annualAddonsCount} (+{$this->suspendedAnnualAddonsCount} suspended) = {$this->addonannualAmount} <br>
-        Semi-Annual: {$this->semiAddonsCount} (+{$this->suspendedSemiAddonsCount} suspended) = {$this->addonbiannualAmount}<br>
-        Quarterly: {$this->quarterAddonsCount} (+{$this->suspendedQuarterAddonsCount} suspended) = {$this->addonquarterlyAmount} <br>
-        Triennially: {$this->triAddonsCount} (+{$this->suspendedTriAddonsCount} suspended) = {$this->addontriennialAmount}<br>
-        Biennially: {$this->triAddonsCount} (+{$this->suspendedBiAddonsCount} suspended) = {$this->addonbiannualAmount}<br>
-        <br><b>Addon Total: {$this->addonTotal}<b>
-        </p>
-        <p>Addons + Services = <b>{$this->annualtotal}</b>
+            case '0':
+                today.setFullYear(today.getFullYear() - 100);
+                break;
+        }
+        return today.toISOString().split('T')[0];
+    }
 
-        EOF;
+    $(document).ready(function() {
+        document.getElementById('interval-select').addEventListener('change', function() {
+            var timeUnit = this.value;
+            var range = document.getElementById('period-select').value;
+            var startDate = calculateStartDate(range);
+    
+            updateChart(timeUnit, startDate);
+        });
+    
+        document.getElementById('period-select').addEventListener('change', function() {
+            var range = this.value;
+            var timeUnit = document.getElementById('interval-select').value;
+            var startDate = calculateStartDate(range);
+    
+            updateChart(timeUnit, startDate);
+        });
+    });
+</script>
+</head>
+<body>
+    <div class="controls">
+        <label for="interval-select">Select Interval:</label>
+        <select id="interval-select">
+            <option value="day">Daily</option>
+            <option value="week" selected>Weekly</option>
+            <option value="month">Monthly</option>
+        </select>
+
+        <label for="period-select">Select Period:</label>
+        <select id="period-select">
+            <option value="7">Last 7 Days</option>
+            <option value="30" selected>Last 30 Days</option>
+            <option value="180">Last 6 Months</option>
+            <option value="365">Last Year</option>
+            <option value="1095">Last 3 Years</option>
+            <option value="0">All Years</option>
+        </select>
+    </div>
+    <canvas id="chart-01" height="500"  style="background-color:rgba(255,255,255,1.00);border-radius:0px;width:100%;height:500px;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px"></canvas>
+    <script>
+        function MoreChartOptions(){}
+            var ChartData = {
+                datasets: [{
+                    data: [{$activeServices}],
+                    backgroundColor :'rgba(45,227,76,0)',
+                    borderColor : 'rgba(0,162,255,0.5)',
+                    pointBackgroundColor:'#3498db',
+                    pointBorderColor : '#fff',
+                    label:"Active Services"
+                }, {
+                    data: [{$allmonthlyServices}],
+                    backgroundColor :'rgba(237,71,71,0)',
+                    borderColor : '#f26464',
+                    pointBackgroundColor:'#f26464',
+                    pointBorderColor : '#fff',
+                    label:"Monthly Services"
+                }, {
+                    data: [{$allServices}],
+                    backgroundColor :'rgba(92,184,92,0)',
+                    borderColor : '#5cb85c',
+                    pointBackgroundColor:'#5cb85c',
+                    pointBorderColor : '#fff',
+                    label:"All Services"
+                }]
+            };
+
+            ChartOptions = {
+                responsive:true,
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        display: true,
+                        time: {
+                            parser: "YYYY-MM-DD",
+                            min: "$date",
+                            unit: 'week'
+                        }
+                    }],
+
+                    yAxes:[{
+                        gridLines:{borderDash:[],},
+                        ticks: {
+                            stepSize: 50000
+                        }
+                    }],
+                },
+                plugins: {
+                    datalabels:{
+                        display:true,
+                        font: {
+                            style:' bold'
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        generateLabels: function(chart){
+                            return chart.data.datasets.map(function(dataset, i) {
+                                return {
+                                    text:dataset.label,
+                                    lineCap:dataset.borderCapStyle,
+                                    lineDash:[],
+                                    lineDashOffset: 0,
+                                    lineJoin:dataset.borderJoinStyle,
+                                    fillStyle:dataset.backgroundColor,
+                                    strokeStyle:dataset.borderColor,
+                                    lineWidth:dataset.pointBorderWidth,
+                                    lineDash:dataset.borderDash,
+                                }
+                            })
+                        },
+                    },
+                },
+                title: {
+                    display:true,
+                    text:'Income Forecast',
+                    fontColor:'#3498db',
+                    fontSize:32,
+                    fontStyle:' bold',
+                },
+                elements: {
+                    arc: {},
+                    point: {},
+                    line: {
+                        tension:0.4
+                    },
+                    rectangle: {},
+                },
+                tooltips: {},
+                hover: {
+                    mode:'nearest',
+                    animationDuration:400,
+                },
+            };
+            var ChartId = "chart-01";
+            var ChartType = "line";
+            var myLine = new Chart(document.getElementById(ChartId).getContext("2d"),{type:ChartType,data:ChartData,options:ChartOptions});
+            document.getElementById(ChartId).getContext("2d").stroke();
+    </script>
+<p><br>
+<!--h2>As of now:</h2>
+If all {$this->totalServices} services and their {$this->totalAddons} addons are renewed for the year you will generate <b>{$this->annualtotal}</b><br>
+If only the {$this->totalActiveServices} active services and their {$this->totalActiveAddons} addons are renewed for the year  you will generate <b>{$this->activeTotalTotal}</b><br>
+If only the {$this->totalSuspendedServices} suspended services and their {$this->totalSuspendedAddons} addons are renewed for the year  you will generate <b>{$this->suspendedTotalTotal}</b><br>
+If only the {$this->totalActiveServices} active services are renewed for the year  you will generate <b>{$this->activeTotal}</b><br>
+If only the {$this->totalActiveAddons} active addons are renewed for the year  you will generate <b>{$this->activeAddonTotal}</b><br>
+If only the {$this->totalSuspendedAddons} suspended addons are renewed for the year  you will generate <b>{$this->suspendedAddonTotal}</b>
+</p--></b>
+<p><br></br></p><p>
+<h2>Services:</h2>
+Monthly: {$this->monthlyServicesCount} (+{$this->suspendedMonthlyServicesCount} suspended) = {$this->monthlyAmount}<br>
+Annually: {$this->annualServicesCount} (+{$this->suspendedAnnualServicesCount} suspended) = {$this->annualAmount} <br>
+Semi-Annual: {$this->semiServicesCount} (+{$this->suspendedSemiServicesCount} suspended) = {$this->biannualAmount}<br>
+Quarterly Services: {$this->quarterServicesCount} (+{$this->suspendedQuarterServicesCount} suspended) = {$this->quarterlyAmount} <br>
+Triennially: {$this->triServicesCount} (+{$this->suspendedTriServicesCount} suspended) = {$this->triennialAmount}<br>
+Biennially Services: {$this->biServicesCount} (+{$this->suspendedBiServicesCount} suspended) = {$this->biannualAmount}<br>
+<br><b>Service Total: {$this->serviceTotal}</b>
+<br>________________________</br>
+<br></br><p></p>
+<h2>Addons:</h2>
+Monthly: {$this->monthlyAddonsCount} (+{$this->suspendedMonthlyAddonsCount} suspended) = {$this->addonmonthlyAmount}<br>
+Annually: {$this->annualAddonsCount} (+{$this->suspendedAnnualAddonsCount} suspended) = {$this->addonannualAmount} <br>
+Semi-Annual: {$this->semiAddonsCount} (+{$this->suspendedSemiAddonsCount} suspended) = {$this->addonbiannualAmount}<br>
+Quarterly: {$this->quarterAddonsCount} (+{$this->suspendedQuarterAddonsCount} suspended) = {$this->addonquarterlyAmount} <br>
+Triennially: {$this->triAddonsCount} (+{$this->suspendedTriAddonsCount} suspended) = {$this->addontriennialAmount}<br>
+Biennially: {$this->triAddonsCount} (+{$this->suspendedBiAddonsCount} suspended) = {$this->addonbiannualAmount}<br>
+<br><b>Addon Total: {$this->addonTotal}<b>
+</p>
+<p>Addons + Services = <b>{$this->annualtotal}</b>
+
+EOF;
         // <p>
         // DEBUGGING MATH<p>
 
