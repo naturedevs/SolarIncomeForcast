@@ -5,6 +5,7 @@ class Controller
 {
     function __construct()
     {
+        $current_date = date('Y-m-d');
         $this->date = mktime(0, 0, 0, 1, 27, 2014);
         $this->dayNumber = date("d", $date);
         $this->dayOfWeek = date("l", $date);
@@ -12,33 +13,33 @@ class Controller
         $this->history = $this->getHistory();
         $this->historyMonthly = $this->getHistory("monthly");
 
-        $this->monthlyServices = $this->getHostedServices("Monthly", "Active");
-        $this->anualServices = $this->getHostedServices("Annually", "Active");
-        $this->triServices = $this->getHostedServices("Triennially", "Active");
-        $this->semiServices = $this->getHostedServices("Semi-Annually", "Active");
-        $this->quarterServices = $this->getHostedServices("Quarterly","Active");
-        $this->biServices = $this->getHostedServices("Biennially", "Active");
+        $this->monthlyServices = $this->getHostedServices1("Monthly", $current_date);
+        $this->anualServices = $this->getHostedServices1("Annually", $current_date);
+        $this->triServices = $this->getHostedServices1("Triennially", $current_date);
+        $this->semiServices = $this->getHostedServices1("Semi-Annually", $current_date);
+        $this->quarterServices = $this->getHostedServices1("Quarterly",$current_date);
+        $this->biServices = $this->getHostedServices1("Biennially", $current_date);
 
-        $this->monthlyAddons = $this->getHostedAddons("Monthly", "Active");
-        $this->anualAddons = $this->getHostedAddons("Annually", "Active");
-        $this->triAddons = $this->getHostedAddons("Triennially", "Active");
-        $this->semiAddons = $this->getHostedAddons("Semi-Annually", "Active");
-        $this->quarterAddons = $this->getHostedAddons("Quarterly", "Active");
-        $this->biAddons = $this->getHostedAddons("Biennially", "Active");
+        $this->monthlyAddons = $this->getHostedAddons1("Monthly", $current_date);
+        $this->anualAddons = $this->getHostedAddons1("Annually", $current_date);
+        $this->triAddons = $this->getHostedAddons1("Triennially", $current_date);
+        $this->semiAddons = $this->getHostedAddons1("Semi-Annually", $current_date);
+        $this->quarterAddons = $this->getHostedAddons1("Quarterly", $current_date);
+        $this->biAddons = $this->getHostedAddons1("Biennially", $current_date);
 
-		$this->suspendedMonthlyServices = $this->getHostedServices("Monthly", "Suspended");
-		$this->suspendedAnualServices = $this->getHostedServices("Annually", "Suspended");
-		$this->suspendedTriServices = $this->getHostedServices("Triennially", "Suspended");
-		$this->suspendedSemiServices = $this->getHostedServices("Semi-Annually", "Suspended");
-		$this->suspendedQuarterServices = $this->getHostedServices("Quarterly", "Suspended");
-		$this->suspendedBiServices = $this->getHostedServices("Quarterly", "Suspended");
+		$this->suspendedMonthlyServices = [];
+		$this->suspendedAnualServices = [];
+		$this->suspendedTriServices = [];
+		$this->suspendedSemiServices = [];
+		$this->suspendedQuarterServices = [];
+		$this->suspendedBiServices = [];
 
-		$this->suspendedMonthlyAddons = $this->getHostedAddons("Monthly", "Suspended");
-		$this->suspendedAnualAddons = $this->getHostedAddons("Annually", "Suspended");
-		$this->suspendedTriAddons = $this->getHostedAddons("Triennially", "Suspended");
-		$this->suspendedSemiAddons = $this->getHostedAddons("Semi-Annually", "Suspended");
-		$this->suspendedQuarterAddons = $this->getHostedAddons("Quarterly", "Suspended");
-		$this->suspendedBiAddons = $this->getHostedAddons("Quarterly", "Suspended");
+		$this->suspendedMonthlyAddons = [];
+		$this->suspendedAnualAddons = [];
+		$this->suspendedTriAddons = [];
+		$this->suspendedSemiAddons = [];
+		$this->suspendedQuarterAddons = [];
+		$this->suspendedBiAddons = [];
 
         $this->monthlyServicesCount = count($this->monthlyServices);
         $this->annualServicesCount = count($this->anualServices);
@@ -700,5 +701,15 @@ class Controller
             </p>
 
             EOF;
+    }
+    public function getHostedServices1($period, $date)
+    {
+        $do = Capsule::table('tblhosting')->where('billingcycle', $period)->where('nextduedate', '>' , $date)->where('regdate', '<' , $date)->get();
+        return $do;
+    }
+    public function getHostedAddons1($period, $date)
+    {
+        $do = Capsule::table('tblhostingaddons')->where('billingcycle', $period)->where('nextduedate', '>' , $date)->where('regdate', '<' , $date)->get();
+        return $do;
     }
 }
