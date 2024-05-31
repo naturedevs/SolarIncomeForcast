@@ -347,53 +347,53 @@ class Controller
                 ($month_name =
                     date("F", mktime(0, 0, 0, $topt, 10)) . "</option>");
         }
-        return <<<EOF
-          <div style="padding:20px;text-align: right;">
-                <p> Choose Currency:<b>USD</b></p>
-            </div>
-                <canvas id="myChart1"></canvas>
+return <<<EOF
+<div style="padding:20px;text-align: right;">
+    <p> Choose Currency:<b>USD</b></p>
+</div>
+    <canvas id="myChart1"></canvas>
 
-            <script>
+<script>
 
-            $(document).ready(function() {
-            var chartObject = null;
-            var windowResizeTimeoutId = null;
+$(document).ready(function() {
+var chartObject = null;
+var windowResizeTimeoutId = null;
 
-            $('#viewIncome').click(function() {
+$('#viewIncome').click(function() {
 
-                refreshWidget('IncomeForecastWidget', 'viewmonth=' + $('#viewMonth').val() + '&viewyear=' + $('#viewYear').val());
-            });
+    refreshWidget('IncomeForecastWidget', 'viewmonth=' + $('#viewMonth').val() + '&viewyear=' + $('#viewYear').val());
+});
 
-            $(window).resize(function() {
-                if (windowResizeTimeoutId) {
-                    clearTimeout(windowResizeTimeoutId);
-                    windowResizeTimeoutId = null;
-                }
+$(window).resize(function() {
+    if (windowResizeTimeoutId) {
+        clearTimeout(windowResizeTimeoutId);
+        windowResizeTimeoutId = null;
+    }
 
-                windowResizeTimeoutId = setTimeout(function() {
-                    if (typeof chartObject === 'object') {
-                        chartObject.resize(false);
-                    }
-                }, 250);
-            });
+    windowResizeTimeoutId = setTimeout(function() {
+        if (typeof chartObject === 'object') {
+            chartObject.resize(false);
+        }
+    }, 250);
+});
 
-            var ctx = $("#myChart1");
-            var chartObject = new Chart(ctx, {
-            type: 'line',
-            data: {
-            labels: {$labels},
-            datasets: [{
-                label: 'Cumulative Income Forecast Total',
-                data: {$amount},
-                backgroundColor: "rgba(51,92,249,0.4)",
-                borderColor: "rgba(51,92,249,1.0)"
-            }],
+var ctx = $("#myChart1");
+var chartObject = new Chart(ctx, {
+type: 'line',
+data: {
+labels: {$labels},
+datasets: [{
+    label: 'Cumulative Income Forecast Total',
+    data: {$amount},
+    backgroundColor: "rgba(51,92,249,0.4)",
+    borderColor: "rgba(51,92,249,1.0)"
+}],
 
-            }
-            });
-            });
-            </script>
-            EOF;
+}
+});
+});
+</script>
+EOF;
     }
 
     public function index($vars)
