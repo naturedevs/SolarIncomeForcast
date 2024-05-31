@@ -644,22 +644,22 @@ If only the {$this->totalSuspendedAddons} suspended addons are renewed for the y
 </p--></b>
 <p><br></br></p><p>
 <h2>Services:</h2>
-Monthly: {$this->monthlyServicesCount} (+{$this->suspendedMonthlyServicesCount} suspended) = {$this->monthlyAmount}<br>
-Annually: {$this->annualServicesCount} (+{$this->suspendedAnnualServicesCount} suspended) = {$this->annualAmount} <br>
-Semi-Annual: {$this->semiServicesCount} (+{$this->suspendedSemiServicesCount} suspended) = {$this->biannualAmount}<br>
-Quarterly Services: {$this->quarterServicesCount} (+{$this->suspendedQuarterServicesCount} suspended) = {$this->quarterlyAmount} <br>
-Triennially: {$this->triServicesCount} (+{$this->suspendedTriServicesCount} suspended) = {$this->triennialAmount}<br>
-Biennially Services: {$this->biServicesCount} (+{$this->suspendedBiServicesCount} suspended) = {$this->biannualAmount}<br>
+Monthly: {$this->monthlyServicesCount}  = {$this->monthlyAmount}<br>
+Annually: {$this->annualServicesCount}  = {$this->annualAmount} <br>
+Semi-Annual: {$this->semiServicesCount}  = {$this->biannualAmount}<br>
+Quarterly Services: {$this->quarterServicesCount}  = {$this->quarterlyAmount} <br>
+Triennially: {$this->triServicesCount}  = {$this->triennialAmount}<br>
+Biennially Services: {$this->biServicesCount}  = {$this->biannualAmount}<br>
 <br><b>Service Total: {$this->serviceTotal}</b>
 <br>________________________</br>
 <br></br><p></p>
 <h2>Addons:</h2>
-Monthly: {$this->monthlyAddonsCount} (+{$this->suspendedMonthlyAddonsCount} suspended) = {$this->addonmonthlyAmount}<br>
-Annually: {$this->annualAddonsCount} (+{$this->suspendedAnnualAddonsCount} suspended) = {$this->addonannualAmount} <br>
-Semi-Annual: {$this->semiAddonsCount} (+{$this->suspendedSemiAddonsCount} suspended) = {$this->addonbiannualAmount}<br>
-Quarterly: {$this->quarterAddonsCount} (+{$this->suspendedQuarterAddonsCount} suspended) = {$this->addonquarterlyAmount} <br>
-Triennially: {$this->triAddonsCount} (+{$this->suspendedTriAddonsCount} suspended) = {$this->addontriennialAmount}<br>
-Biennially: {$this->triAddonsCount} (+{$this->suspendedBiAddonsCount} suspended) = {$this->addonbiannualAmount}<br>
+Monthly: {$this->monthlyAddonsCount}  = {$this->addonmonthlyAmount}<br>
+Annually: {$this->annualAddonsCount}  = {$this->addonannualAmount} <br>
+Semi-Annual: {$this->semiAddonsCount}  = {$this->addonbiannualAmount}<br>
+Quarterly: {$this->quarterAddonsCount}  = {$this->addonquarterlyAmount} <br>
+Triennially: {$this->triAddonsCount}  = {$this->addontriennialAmount}<br>
+Biennially: {$this->triAddonsCount}  = {$this->addonbiannualAmount}<br>
 <br><b>Addon Total: {$this->addonTotal}<b>
 </p>
 <p>Addons + Services = <b>{$this->annualtotal}</b>
