@@ -33,7 +33,7 @@ class Forecast
         $this->suspendedQuarterServices = [];
         $this->suspendedBiServices = [];
 
-        $this->suspendedMonthlyAddons = []
+        $this->suspendedMonthlyAddons = [];
         $this->suspendedAnualAddons = [];
         $this->suspendedTriAddons = [];
         $this->suspendedSemiAddons = [];
