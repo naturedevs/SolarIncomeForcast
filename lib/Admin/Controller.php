@@ -540,22 +540,22 @@ return <<<EOF
                     data: [{$activeServices}],
                     backgroundColor :'rgba(45,227,76,0)',
                     borderColor : 'rgba(0,162,255,0.5)',
-                    pointBackgroundColor:'#3498db',
-                    pointBorderColor : '#fff',
+                    pointBackgroundColor:'rgba(45,227,76,0)',
+                    pointBorderColor : 'rgba(45,227,76,0)',
                     label:"Active Services"
                 }, {
                     data: [{$allmonthlyServices}],
                     backgroundColor :'rgba(237,71,71,0)',
                     borderColor : '#f26464',
-                    pointBackgroundColor:'#f26464',
-                    pointBorderColor : '#fff',
+                    pointBackgroundColor:'rgba(237,71,71,0)',
+                    pointBorderColor : 'rgba(237,71,71,0)',
                     label:"Monthly Services"
                 }, {
                     data: [{$allServices}],
                     backgroundColor :'rgba(92,184,92,0)',
                     borderColor : '#5cb85c',
-                    pointBackgroundColor:'#5cb85c',
-                    pointBorderColor : '#fff',
+                    pointBackgroundColor:'rgba(237,71,71,0)',
+                    pointBorderColor : 'rgba(237,71,71,0)',
                     label:"All Services"
                 }]
             };
@@ -616,7 +616,10 @@ return <<<EOF
                 },
                 elements: {
                     arc: {},
-                    point: {},
+                    point: {
+                        radius:1,
+                        borderWidth:0,
+                    },
                     line: {
                         tension:0.4
                     },
