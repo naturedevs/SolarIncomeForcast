@@ -461,6 +461,7 @@ return <<<EOF
     function updateChart(timeUnit, startDate) {
         myLine.scales['x-axis-0'].options.time.min = startDate;
         myLine.scales['x-axis-0'].options.time.unit = timeUnit;
+        myLine.config.options.elements.point.radius = 0;
         myLine.update();
     }
 
@@ -488,7 +489,7 @@ return <<<EOF
                 break;
 
             case '0':
-                today.setFullYear(today.getFullYear() - 100);
+                today.setFullYear(today.getFullYear() - 12);
                 break;
         }
         return today.toISOString().split('T')[0];
