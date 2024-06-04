@@ -617,7 +617,7 @@ return <<<EOF
                 elements: {
                     arc: {},
                     point: {
-                        radius:1,
+                        radius:0,
                         borderWidth:0,
                     },
                     line: {
