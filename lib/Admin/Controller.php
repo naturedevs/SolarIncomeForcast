@@ -461,6 +461,11 @@ return <<<EOF
     function updateChart(timeUnit, startDate) {
         myLine.scales['x-axis-0'].options.time.min = startDate;
         myLine.scales['x-axis-0'].options.time.unit = timeUnit;
+        var today = new Date();
+        today.setFullYear(today.getFullYear() - 12);
+        if(startDate == today.toISOString().split('T')[0]){
+            myLine.scales['x-axis-0'].options.time.unit = "month";
+        }
         myLine.config.options.elements.point.radius = 0;
         myLine.update();
     }
