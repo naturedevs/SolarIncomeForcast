@@ -461,7 +461,7 @@ return <<<EOF
     function updateChart(timeUnit, startDate, range) {
         myLine.scales['x-axis-0'].options.time.min = startDate;
         myLine.scales['x-axis-0'].options.time.unit = timeUnit;
-        if(range == 0 || range =0 1095 ){
+        if(range == 0 || range == 1095 ){
             myLine.scales['x-axis-0'].options.time.unit = "month";
         }else if(range == 7 || range == 30){
             myLine.scales['x-axis-0'].options.time.unit = "day";
