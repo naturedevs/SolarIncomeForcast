@@ -458,13 +458,13 @@ EOF;
 return <<<EOF
 
 <script>
-    function updateChart(timeUnit, startDate) {
+    function updateChart(timeUnit, startDate, range) {
         myLine.scales['x-axis-0'].options.time.min = startDate;
         myLine.scales['x-axis-0'].options.time.unit = timeUnit;
-        var today = new Date();
-        today.setFullYear(today.getFullYear() - 12);
-        if(startDate == today.toISOString().split('T')[0]){
+        if(range == 0 || range =0 1095 ){
             myLine.scales['x-axis-0'].options.time.unit = "month";
+        }else if(range == 7 || range == 30){
+            myLine.scales['x-axis-0'].options.time.unit = "day";
         }
         myLine.config.options.elements.point.radius = 0;
         myLine.update();
@@ -506,7 +506,7 @@ return <<<EOF
             var range = document.getElementById('period-select').value;
             var startDate = calculateStartDate(range);
     
-            updateChart(timeUnit, startDate);
+            updateChart(timeUnit, startDate, range);
         });
     
         document.getElementById('period-select').addEventListener('change', function() {
@@ -514,7 +514,7 @@ return <<<EOF
             var timeUnit = document.getElementById('interval-select').value;
             var startDate = calculateStartDate(range);
     
-            updateChart(timeUnit, startDate);
+            updateChart(timeUnit, startDate, range);
         });
     });
 </script>
